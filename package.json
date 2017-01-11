@@ -10,7 +10,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "mithril": "^0.2.5"
+    "mithril": "^1.0.0-rc.7"
   },
   "devDependencies": {
     "babel-core": "^6.21.0",
