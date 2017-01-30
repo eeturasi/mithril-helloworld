@@ -11,7 +11,7 @@
   "author": "",
   "license": "MIT",
   "dependencies": {
-    "mithril": "^1.0.0-rc.7"
+    "mithril": "^1.0.0"
   },
   "devDependencies": {
     "babel-core": "^6.21.0",
