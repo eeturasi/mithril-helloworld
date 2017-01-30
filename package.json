@@ -1,14 +1,11 @@
 {
   "name": "mithril-helloworld",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "description": "Mithril Hello World",
   "scripts": {
     "start": "webpack-dev-server --progress --inline --hot -d --color",
     "build": "webpack -p"
   },
-  "keywords": [],
-  "author": "",
   "license": "MIT",
   "dependencies": {
     "mithril": "^1.0.0"
