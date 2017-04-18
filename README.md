@@ -5,6 +5,7 @@ A small [Mithril](http://mithril.js.org/) boilerplate.
 ## Setup
 
 ```bash
+sudo npm install -g webpack webpack-dev-server
 npm install
 npm start
 ```
