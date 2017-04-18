@@ -13,42 +13,53 @@ module.exports = {
     filename: 'bundle.js'
   },
   module: {
-    loaders: [
+    rules: [
       {
         test: /\.js$/,
-        loader: 'babel-loader',
-        include: path.join(__dirname, 'src'),
-        query: {
-          presets: ['es2015']
-        }
+        use: [
+          {
+            loader: 'babel-loader',
+            options: {
+              presets: ['es2015']
+            }
+          },
+        ],
       },
       {
         test: /\.sass$/,
-        loader: ExtractTextPlugin.extract('style-loader', 'css-loader?importLoaders=1!sass-loader?indentedSyntax=sass')
+        use: ExtractTextPlugin.extract({
+          fallback: 'style-loader',
+          use: [
+            {
+              loader: 'css-loader'
+            },
+            {
+              loader: 'sass-loader',
+              options: {
+                indentedSyntax: 'sass'
+              }
+            }
+          ]
+        })
       }
     ]
   },
   resolve: {
-    root: path.resolve('./src'),
-    extensions: ['', '.js', '.sass']
+    modules: [
+      path.resolve('./src'),
+      './node_modules'
+    ],
+    extensions: ['.js', '.sass']
   },
   plugins: [
     new webpack.NoErrorsPlugin(),
-    new ExtractTextPlugin('bundle.css', {
+    new ExtractTextPlugin({
+      filename: 'bundle.css',
+      disable: false,
       allChunks: true
     }),
     new HtmlWebpackPlugin({
       template: 'index.ejs'
     })
-  ],
-  sassLoader: {
-    includePaths: [
-      path.resolve(__dirname, 'src')
-    ]
-  },
-  devTool: "#source-map",
-  devServer: {
-    contentBase: path.join(__dirname, 'build'),
-    host: '0.0.0.0'
-  }
+  ]
 };
