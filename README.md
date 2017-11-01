@@ -20,8 +20,8 @@ npm run build
 
 ## Features
 
-* [Mithril](http://mithril.js.org/)
-* Live reload with Webpack
-* ES2015 with Babel
-* CSS modules with SASS
+* [Mithril](http://mithril.js.org/) with a route and a link
+* Webpack with Hot Module Replacement
+* Babel with Env preset
+* CSS modules and SASS
 * EJS index template
