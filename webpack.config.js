@@ -1,65 +1,41 @@
-var webpack = require('webpack');
-var path = require('path');
-var ExtractTextPlugin = require('extract-text-webpack-plugin');
-var HtmlWebpackPlugin = require('html-webpack-plugin');
+const path = require('path');
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
-  entry: [
-    './src/app'
-  ],
+  entry: path.resolve(__dirname, 'src/app.js'),
   output: {
     path: path.join(__dirname, 'build'),
     publicPath: '/',
     filename: 'bundle.js'
   },
+  devServer: {
+    contentBase: path.resolve(__dirname, 'src')
+  },
   module: {
     rules: [
       {
         test: /\.js$/,
+        exclude: /node_modules/,
         use: [
-          {
-            loader: 'babel-loader',
-            options: {
-              presets: ['es2015']
-            }
-          },
+          'babel-loader'
         ],
       },
       {
         test: /\.sass$/,
         use: ExtractTextPlugin.extract({
-          fallback: 'style-loader',
-          use: [
-            {
-              loader: 'css-loader'
-            },
-            {
-              loader: 'sass-loader',
-              options: {
-                indentedSyntax: 'sass'
-              }
-            }
-          ]
+          use: ['css-loader', 'sass-loader']
         })
       }
     ]
   },
   resolve: {
-    modules: [
-      path.resolve('./src'),
-      './node_modules'
-    ],
     extensions: ['.js', '.sass']
   },
   plugins: [
-    new webpack.NoErrorsPlugin(),
-    new ExtractTextPlugin({
-      filename: 'bundle.css',
-      disable: false,
-      allChunks: true
-    }),
+    new ExtractTextPlugin('bundle.css'),
     new HtmlWebpackPlugin({
-      template: 'index.ejs'
+      template: path.resolve(__dirname, 'src/index.ejs')
     })
   ]
 };
