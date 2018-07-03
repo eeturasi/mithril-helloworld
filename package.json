@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "Mithril Hello World",
   "scripts": {
-    "start": "webpack-dev-server -d --progress --color",
+    "start": "webpack-dev-server -d --progress --color --hot --inline",
     "build": "webpack -p"
   },
   "license": "MIT",

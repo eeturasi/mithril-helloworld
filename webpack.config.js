@@ -10,9 +10,7 @@ module.exports = {
     filename: 'bundle.js'
   },
   devServer: {
-    contentBase: path.resolve(__dirname, 'src'),
-    inline: true,
-    hot: true
+    contentBase: path.resolve(__dirname, 'src')
   },
   module: {
     rules: [
